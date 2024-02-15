@@ -1,25 +1,24 @@
-name: Run Tests
+name: Reusable Workflow
 
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+  workflow_call:
+    inputs:
+      input1:
+        description: "Description for input1"
+        required: true
+        type: string
+      input2:
+        description: "Description for input2"
+        required: false
+        default: "default value for input2"
+        type: string
 
 jobs:
-  build:
+  print-inputs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Use Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: "14"
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run tests
-        run: npm test
+      - name: Print inputs
+        run: |
+          echo "Input1: ${{ inputs.input1 }}"
+          echo "Input2: ${{ inputs.input2 }}"
