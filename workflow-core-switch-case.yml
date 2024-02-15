@@ -1,0 +1,24 @@
+jobs:
+  print-inputs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Save inputs to environment variables
+        run: |
+          echo "INPUT1=${{ inputs.input1 }}" >> $GITHUB_ENV
+          echo "INPUT2=${{ inputs.input2 }}" >> $GITHUB_ENV
+
+      - name: Create new variable and save it to GITHUB_ENV in PowerShell
+        run: |
+          $newVar = ""
+          switch ($env:INPUT1) {
+            "value1" { $newVar = "New variable for value1" }
+            "value2" { $newVar = "New variable for value2" }
+            default  { $newVar = "New variable for other values" }
+          }
+          echo "NewVar=$newVar" | Out-File -Append -Encoding utf8 -FilePath $env:GITHUB_ENV
+        shell: pwsh
+
+      - name: Print NewVar
+        run: |
+        echo "NewVar: ${{ env.NewVar }}"
