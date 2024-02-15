@@ -27,5 +27,5 @@ jobs:
         run: |
           echo "Input1: $INPUT1"
           echo "Input2: $INPUT2"
-          echo "Input1: from GITHUB_ENV ${{ env.Input1 }}"
-          echo "Input2: from GITHUB_ENV ${{ env.Input2 }}"
+          echo "Input1: from GITHUB_ENV ${{ env.INPUT1 }}"
+          echo "Input2: from GITHUB_ENV ${{ env.INPUT2 }}"
