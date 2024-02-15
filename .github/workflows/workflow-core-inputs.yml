@@ -18,7 +18,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Save inputs to environment variables
+        run: |
+          echo "INPUT1=${{ inputs.input1 }}" >> $GITHUB_ENV
+          echo "INPUT2=${{ inputs.input2 }}" >> $GITHUB_ENV
+
       - name: Print inputs
         run: |
-          echo "Input1: ${{ inputs.input1 }}"
-          echo "Input2: ${{ inputs.input2 }}"
+          echo "Input1: $INPUT1"
+          echo "Input2: $INPUT2"
